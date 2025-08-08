@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Minimal Music Player</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <main class="scene">
+    <article class="card">
+      <img src="cover-1.jpg" alt="Album cover" class="cover-img" />
+      <h2 class="song-title">Lost in the City Lights</h2>
+
+      <div class="progress-wrap">
+        <div class="progress-bar" aria-label="Song progress" role="progressbar" tabindex="0">
+          <div class="progress"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="prev-btn" aria-label="Previous">⏮️</button>
+        <button class="play-btn" aria-label="Play/Pause">▶️</button>
+        <button class="next-btn" aria-label="Next">⏭️</button>
+      </div>
+    </article>
+  </main>
+
+  <!-- Motor de audio (oculto) -->
+  <audio id="player" preload="metadata"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
