@@ -1,42 +1,134 @@
-*{box-sizing:border-box}
-:root{
-  --bg1:#0f1220; --bg2:#1a0f1f;
-  --card:#1d1f2a; --text:#eaeef7; --muted:#b8c0d9;
-  --track:#31354a; --fill:#f06292; --btn:#f06292;
-}
-
-html,body{height:100%}
+/* === Background igual al mock === */
 body{
-  margin:0; font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
-  background:
-    radial-gradient(80vmin 50vmin at 20% 10%, #2a2f5a55 0%, transparent 60%),
-    radial-gradient(70vmin 50vmin at 80% 90%, #6a2a5a44 0%, transparent 60%),
-    linear-gradient(160deg, var(--bg1), var(--bg2));
+  /* usa tu imagen de fondo */
+  background-image:
+    radial-gradient(900px 600px at 20% 10%, rgba(42,47,90,.40) 0%, rgba(0,0,0,0) 60%),
+    radial-gradient(800px 600px at 80% 90%, rgba(106,42,90,.33) 0%, rgba(0,0,0,0) 60%),
+    url("gradient-bg-small.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
-.scene{min-height:100%; display:grid; place-items:center; padding:24px;}
 
+/* === Card más pequeña y compacta === */
 .card{
-  width:min(360px,92vw); background:var(--card); border-radius:20px;
-  padding:16px 16px 22px; box-shadow:0 20px 60px rgba(0,0,0,.55), 0 0 1px #fff1 inset;
+  width: 320px;               /* el mock es chico */
+  border-radius: 22px;
+  background: #1b1f2a;
+  padding: 16px 14px 18px;
+  box-shadow:
+    0 24px 60px rgba(0,0,0,.55),
+    0 0 0 1px rgba(255,255,255,.06) inset; /* borde sutil interior */
 }
-.cover-img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:14px; display:block; box-shadow:0 8px 30px #0007;}
-.song-title{text-align:center; font-size:1rem; font-weight:600; margin:12px 0 8px}
 
-.progress-wrap{padding:8px 2px 6px}
-.progress-bar{position:relative; height:6px; background:var(--track); border-radius:999px; overflow:hidden; outline:none}
-.progress{position:absolute; inset:0 auto 0 0; width:0%; background:linear-gradient(90deg,var(--fill),#ff8fb3); box-shadow:0 0 10px #ff8fb355 inset}
+/* Cover con radio más marcado y sombra */
+.cover-img{
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+}
 
-.controls{margin-top:14px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:8px}
+/* Tipos y jerarquía como el mock */
+.song-title{
+  margin: 10px 0 2px;
+  font-size: .96rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: .2px;
+}
+.artist-name{
+  margin: 0 0 8px;
+  font-size: .75rem;
+  text-align: center;
+  color: #b9c2d6;
+}
+
+/* fila de tiempos (izq/der) */
+.time-row{
+  display: flex; justify-content: space-between; align-items: center;
+  margin: 2px 2px 8px;
+  color:#8f99b5; font-size: .68rem; font-variant-numeric: tabular-nums;
+}
+.time-left,.time-right{ opacity:.9 }
+
+/* Barra muy delgada */
+.progress-wrap{ padding: 0 2px 10px; }
+.progress-bar{
+  height: 4px;                 /* más fina */
+  border-radius: 999px;
+  background: #2f3448;
+}
+.progress{
+  background: linear-gradient(90deg, #ff5d8f, #ff86ad);
+  box-shadow: 0 0 8px #ff86ad55 inset;
+}
+
+/* Controles: botón rosa más chico; prev/next discretos */
+.controls{
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
 .prev-btn,.next-btn{
-  justify-self:center; background:transparent; border:none; color:#d6dbf2; font-size:20px; padding:8px; cursor:pointer;
-  transition:transform .12s ease, opacity .12s ease; opacity:.9;
+  justify-self:center;
+  background: transparent; border: 0; color: #cfd6ec;
+  font-size: 18px; padding: 6px; opacity:.85; transition: opacity .15s, transform .15s;
 }
-.prev-btn:hover,.next-btn:hover{transform:translateY(-1px); opacity:1}
+.prev-btn:hover,.next-btn:hover{ opacity:1; transform:translateY(-1px) }
+
 .play-btn{
-  width:64px; height:64px; border-radius:50%; border:none; background:var(--btn); color:#fff; font-size:22px;
-  display:grid; place-items:center; cursor:pointer;
-  box-shadow:0 10px 24px rgba(240,98,146,.45), 0 2px 0 #e24c82 inset;
-  transition:transform .12s ease, box-shadow .12s ease;
+  width: 56px; height: 56px;           /* más pequeño que antes */
+  border-radius: 50%; border: 0;
+  background: #ff5d8f; color: #fff; font-size: 20px;
+  display: grid; place-items: center; cursor: pointer;
+  box-shadow:
+    0 10px 22px rgba(255,93,143,.45),
+    0 2px 0 #e24c82 inset;
+  transition: transform .12s ease, box-shadow .12s ease;
 }
-.play-btn:hover{transform:translateY(-1px); box-shadow:0 16px 28px rgba(240,98,146,.55), 0 2px 0 #e24c82 inset}
-@media (max-width:380px){ .play-btn{width:58px; height:58px; font-size:20px} }
+.play-btn:hover{ transform: translateY(-1px) }
+
+@media (max-width: 680px){
+  .card{ width: 300px; }
+  .play-btn{ width: 52px; height: 52px; font-size: 18px; }
+}
+/* Centrar todo el player en la pantalla */
+html, body { height: 100%; }
+body { margin: 0; overflow-x: hidden; }
+
+.scene{
+  min-height: 100vh;
+  display: grid;
+  place-items: center;   /* ← centra vertical y horizontal */
+  padding: 24px;
+}
+
+/* Asegurar ancho fijo y centrado de la card */
+.card{
+  width: 320px;          /* como el mock */
+  margin: 0 auto;        /* ← centrado horizontal por si .scene falla */
+}
+
+/* (opcional) imagen de fondo bien centrada */
+body{
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.card h2, 
+.card h3 {
+  color: #fff;  
+}
+
+
+.card h2 {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+
+.card h3 {
+  color: #ccc;   
+  font-weight: normal;
+  margin-top: 4px;
+}

@@ -70,3 +70,11 @@ bar.addEventListener("click", (e)=>{
 
 /* ===== 6) Inicio ===== */
 load(current);
+
+const left = document.querySelector('.time-left');
+const right = document.querySelector('.time-right');
+
+function fmt(s){ const m=Math.floor(s/60), ss=Math.floor(s%60).toString().padStart(2,'0'); return `${m}:${ss}`; }
+
+audio.addEventListener('loadedmetadata', ()=> { right.textContent = fmt(audio.duration || 0); });
+audio.addEventListener('timeupdate', ()=> { left.textContent = fmt(audio.currentTime || 0); });
